@@ -2,3 +2,13 @@ img{
     width: 30%;
     margin: 1.666%;
 }
+
+nav{
+    text-transform: uppercase;
+    font-family: 'Contrail One', Times;
+    font-size: 1.5em;
+    border-bottom: 2px solid #f1f1f1;
+    width: 30%;
+    margin-left: 1.666%;
+    padding: 1.2em 0;
+}
