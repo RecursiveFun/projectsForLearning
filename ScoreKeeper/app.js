@@ -12,16 +12,17 @@ const p2 = {
 }
 
 const resetButton = document.querySelector('#reset');
-const winningScoreSelect = document.querySelector('#playto');
-let startingScore = document.querySelector('#playto')
+const firstRound = document.querySelector('#playto');;
+let startingScore = 20;
 let losingScore = 0;
 let isGameOver = false;
+resetButton.disabled = true;
 
 
 function updateScores(player, opponent) {
     if (!isGameOver) {
         player.score -= 1;
-        if (player.score === losingScore) {
+        if (player.score <= losingScore) {
             isGameOver = true;
             player.display.classList.add('has-text-danger');
             opponent.display.classList.add('has-text-success');
@@ -31,13 +32,14 @@ function updateScores(player, opponent) {
             opponent.button5.disabled = true;
         }
         player.display.textContent = player.score;
+        resetButton.disabled = false;
     }
 }
 
 function updateScoresMinusFive(player, opponent) {
     if (!isGameOver) {
         player.score -= 5;
-        if (player.score === losingScore) {
+        if (player.score <= losingScore) {
             isGameOver = true;
             player.display.classList.add('has-text-danger');
             opponent.display.classList.add('has-text-success');
@@ -47,6 +49,7 @@ function updateScoresMinusFive(player, opponent) {
             opponent.button5.disabled = true;
         }
         player.display.textContent = player.score;
+        resetButton.disabled = false;
     }
 }
 
@@ -64,7 +67,7 @@ p2.button5.addEventListener('click', function () {
     updateScoresMinusFive(p2, p1)
 })
 
-winningScoreSelect.addEventListener('change', function () {
+firstRound.addEventListener('change', function () {
     startingScore = parseInt(this.value);
     reset();
 })
@@ -79,5 +82,6 @@ function reset() {
         p.display.classList.remove('has-text-success', 'has-text-danger');
         p.button.disabled = false;
         p.button5.disabled = false;
+        resetButton.disabled = true;
     }
 }
